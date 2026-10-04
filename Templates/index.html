@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Vocalis - Speech Pace & Clarity Analyzer
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <span class="brand-mark">◉</span>
+
+        <div>
+            <strong>VOCALIS</strong>
+            <small>SPEECH ANALYSIS LAB</small>
+        </div>
+
+    </div>
+
+    <div class="status">
+
+        <span></span>
+        PYTHON ENGINE READY
+
+    </div>
+
+</header>
+
+
+<main class="workspace">
+
+    <section class="intro">
+
+        <p class="eyebrow">
+            TEXT & SPEECH ANALYSIS · 05
+        </p>
+
+        <h1>
+            Listen to the
+            <br>
+            <em>signal.</em>
+        </h1>
+
+        <p class="subtext">
+
+            Upload a WAV speech recording and inspect
+            measurable audio characteristics such as
+            duration, loudness, sample rate and a
+            simple clarity estimate.
+
+        </p>
+
+    </section>
+
+
+    <section class="studio">
+
+        <div
+            class="upload-card"
+            id="dropZone"
+        >
+
+            <div class="mic-ring">
+                🎙
+            </div>
+
+            <h2>
+                Drop your recording
+            </h2>
+
+            <p>
+                WAV / PCM audio · Maximum 25 MB
+            </p>
+
+            <input
+                type="file"
+                id="audioInput"
+                accept=".wav,audio/wav"
+            >
+
+            <label
+                for="audioInput"
+                class="choose-btn"
+            >
+                CHOOSE AUDIO
+            </label>
+
+            <div
+                id="fileName"
+                class="file-name"
+            >
+                No file selected
+            </div>
+
+        </div>
+
+
+        <div class="wave-panel">
+
+            <div class="wave-head">
+
+                <span>
+                    LIVE WAVEFORM
+                </span>
+
+                <span id="durationLabel">
+                    00:00
+                </span>
+
+            </div>
+
+            <canvas id="waveCanvas"></canvas>
+
+            <div class="wave-controls">
+
+                <button
+                    id="playBtn"
+                    disabled
+                >
+                    ▶ PLAY
+                </button>
+
+                <button
+                    id="analyzeBtn"
+                    disabled
+                >
+                    ANALYZE SPEECH
+                </button>
+
+            </div>
+
+            <audio
+                id="audioPlayer"
+                hidden
+            ></audio>
+
+        </div>
+
+    </section>
+
+
+    <section
+        id="results"
+        class="results hidden"
+    >
+
+        <div class="result-title">
+
+            <div>
+
+                <p class="eyebrow">
+                    ANALYSIS REPORT
+                </p>
+
+                <h2>
+                    Signal profile
+                </h2>
+
+            </div>
+
+            <button
+                id="resetBtn"
+                class="reset"
+            >
+                NEW RECORDING ↻
+            </button>
+
+        </div>
+
+
+        <div class="score-card">
+
+            <div class="score-ring">
+
+                <span id="clarityScore">
+                    --
+                </span>
+
+                <small>
+                    /100
+                </small>
+
+            </div>
+
+
+            <div>
+
+                <p class="label">
+                    ESTIMATED CLARITY INDEX
+                </p>
+
+                <h3 id="clarityText">
+                    Waiting for analysis
+                </h3>
+
+                <p>
+                    This index is based on measurable
+                    audio energy characteristics.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="metrics">
+
+            <article>
+
+                <span>DURATION</span>
+
+                <strong id="duration">
+                    --
+                </strong>
+
+            </article>
+
+
+            <article>
+
+                <span>LOUDNESS</span>
+
+                <strong id="loudness">
+                    --
+                </strong>
+
+            </article>
+
+
+            <article>
+
+                <span>SAMPLE RATE</span>
+
+                <strong id="sampleRate">
+                    --
+                </strong>
+
+            </article>
+
+
+            <article>
+
+                <span>CHANNELS</span>
+
+                <strong id="channels">
+                    --
+                </strong>
+
+            </article>
+
+
+            <article>
+
+                <span>PEAK LEVEL</span>
+
+                <strong id="peak">
+                    --
+                </strong>
+
+            </article>
+
+
+            <article>
+
+                <span>RMS ENERGY</span>
+
+                <strong id="rms">
+                    --
+                </strong>
+
+            </article>
+
+        </div>
+
+
+        <div class="note">
+
+            <strong>
+                ACADEMIC NOTE
+            </strong>
+
+            <p>
+
+                The Python backend reads the uploaded
+                WAV file and extracts measurable acoustic
+                properties. The project demonstrates
+                server-side audio processing.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <p
+        id="error"
+        class="error"
+    ></p>
+
+</main>
+
+
+<footer>
+
+    VOCALIS · FLASK + PYTHON · TEXT AND SPEECH ANALYSIS
+
+</footer>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+</body>
+
+</html>
